@@ -1,3 +1,15 @@
+<?php
+ include "koneksi.php";
+ $id_makanan = $_GET['id_makanan'];
+ $query = "select * from tb_makanan where id_makanan='$id_makanan'";
+ $result = mysqli_query($koneksi, $query);
+ $row = mysqli_fetch_assoc($result);
+ $kode_makanan = $row['kode_makanan'];
+ $nama_paket = $row['nama_paket'];
+ $harga = $row['harga'];
+ $deskripsi = $row['deskripsi'];
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -97,7 +109,7 @@
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
 									<li><a href="datamakanan.php" class="active">Data Makanan</a></li>
-									<li><a href="datatabung.html" class="">Data Tabung</a></li>
+									<li><a href="datatabung.php" class="">Data Tabung</a></li>
 									<li><a href="datapasien.html" class="">Data Pasien</a></li>
 								</ul>
 							</div>
@@ -118,27 +130,33 @@
                             <h3 class="panel-title">Form Tambah Data Makanan</h3>
                         </div>
                         <div class="panel-body">
-                            <form action="insertmakanan_act.php" method="GET" enctype="multipart/form-data">
+                            <form action="edit_makanan_act.php" method="GET" enctype="multipart/form-data">
+                                <div class="row" hidden>
+                                    <div class="col-md-6">
+                                        <label for="usr">id Makanan:</label>
+                                        <input type="text" value=<?php echo "$id_makanan"; ?> name="id_makanan" class="form-control" placeholder="Kode Makanan" style="border-radius: 100px;">
+                                    </div>
+                                </div>&nbsp;
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="usr">Kode Makanan:</label>
-                                        <input type="text" value="<?php echo $ed_id_jurusan ?>" name="kode_makanan" class="form-control" placeholder="Kode Makanan" style="border-radius: 100px;">
+                                        <input type="text" value=<?php echo "$kode_makanan"; ?> name="kode_makanan" class="form-control" placeholder="Kode Makanan" style="border-radius: 100px;">
                                     </div>
                                 </div>&nbsp;
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="pwd">Nama Paket:</label>
-                                        <input type="text" name="nama_paket" class="form-control" placeholder="Nama Paket" style="border-radius: 100px;">
+                                        <input type="text" value=<?php echo "$nama_paket"; ?> name="nama_paket" class="form-control" placeholder="Nama Paket" style="border-radius: 100px;">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="pwd">Harga Paket:</label>
-                                        <input type="text" name="harga" class="form-control" placeholder="Harga Paket" style="border-radius: 100px;">
+                                        <input type="text" value=<?php echo "$harga"; ?> name="harga" class="form-control" placeholder="Harga Paket" style="border-radius: 100px;">
                                     </div>
                                 </div>&nbsp;
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="usr">Deskripsi:</label><br>
-                                        <textarea class="form-control"  name="deskripsi" cols="70" rows="5" style="border-radius: 10px;"></textarea>
+                                        <textarea class="form-control"  name="deskripsi" cols="70" rows="5" style="border-radius: 10px;"><?php echo "$deskripsi"; ?></textarea>
                                     </div>
                                 </div>&nbsp;
                                 <div class="row">

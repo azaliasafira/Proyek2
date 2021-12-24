@@ -16,18 +16,18 @@ if (!isset($_SESSION['username'])) {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<!-- VENDOR CSS -->
-	<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../assets/vendor/linearicons/style.css">
 	<!-- MAIN CSS -->
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/main.css">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-	<link rel="stylesheet" href="assets/css/demo.css">
+	<link rel="stylesheet" href="../assets/css/demo.css">
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
 </head>
 
 <body>
@@ -36,7 +36,7 @@ if (!isset($_SESSION['username'])) {
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="index.html"><img src="assets/img/logo-dark.png" alt="Klorofil Logo"
+				<a href="index.html"><img src="../assets/img/logo-dark.png" alt="Klorofil Logo"
 						class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
@@ -50,7 +50,8 @@ if (!isset($_SESSION['username'])) {
 						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
 					</div>
 				</form>
-				
+				<div class="navbar-btn navbar-btn-right">
+				</div>
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
@@ -73,10 +74,22 @@ if (!isset($_SESSION['username'])) {
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png"
-									class="img-circle" alt="Avatar"> <span><?php echo $_SESSION['username'];?></span> <i
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+									class="lnr lnr-question-circle"></i> <span>Help</span> <i
 									class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
+								<li><a href="#">Basic Use</a></li>
+								<li><a href="#">Working With Data</a></li>
+								<li><a href="#">Security</a></li>
+								<li><a href="#">Troubleshooting</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="../assets/img/user.png" class="img-circle" alt="Avatar"> <span><?php echo $_SESSION['username'];?></span> <iclass="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
+								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
@@ -98,16 +111,15 @@ if (!isset($_SESSION['username'])) {
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i
 									class="lnr lnr-file-empty"></i>
-								<span>Master Data</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+								<span>Pemesanan</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
-									<li><a href="datamakanan.php" class="">Data Makanan</a></li>
-									<li><a href="datatabung.php" class="">Data Tabung</a></li>
-									<li><a href="datapasien.php" class="active">Data Pasien</a></li>
+									<li><a href="pesanmakanan.php" class="active">Pesanan Makanan</a></li>
+									<li><a href="pesantabung.php" class="">Pesanan Tabung</a></li>
 								</ul>
 							</div>
 						</li>
-						<li><a href="Pesanan.php" class=""><i class="lnr lnr-dice"></i> <span>Pesanan</span></a></li>
+						
 					</ul>
 				</nav>
 			</div>
@@ -117,87 +129,29 @@ if (!isset($_SESSION['username'])) {
 		<div class="main">
 			<div class="main-content">
 				<div class="container-fluid">
-					<h2>Master Data / Data Pasien</h2>
+					<h2>Rekomendasi Makanan</h2>
 					<!-- TABLE HOVER -->
 					<div class="row">
 						<div class="col-md-6">
+                        <input type="rext" class="form-control" placeholder="Search" style="border-radius: 100px;">
+							<!-- <a href="insertmakanan.php">
+								<button type="button" class="btn btn-info" style="border-radius: 100px;">Tambah
+									Data</button>
+							</a> -->
 						</div>
 						<div class="col-md-2"></div>
 						<div class="col-md-4">
-							<input type="rext" class="form-control" placeholder="Search" style="border-radius: 100px;">
+							
 							<!-- <button type="button" class="btn btn-info">Search</button> -->
 						</div>
 					</div><br>
 					<div class="panel">
-						<div class="panel-heading">
-							<h3 class="panel-title">Tabel Data Pasien</h3>
-						</div>
+						<!-- <div class="panel-heading">
+							<h3 class="panel-title">Tabel Data Makanan</h3>
+						</div> -->
 						<div class="panel-body">
-							<table class="table table-bordered">
-								<thead>
-									<tr>
-										<th>No</th>
-										<th>NIK</th>
-										<th>Nama</th>
-										<th>Alamat</th>
-										<th>Aksi</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-										include "koneksi.php";
-										$query =mysqli_query($koneksi, "SELECT * FROM tb_pasien ORDER BY id_pasien ASC");
-										$no=0;
-										while($data =mysqli_fetch_array($query)){
-										
-									?>
-									<tr>
-										<td><?php echo $no?></td>
-										<td><?php echo $data['nik']?></td>
-										<td><?php echo $data['nama']?></td>
-										<td><?php echo $data['alamat']?></td>
-										<td>
-											<button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-												data-target="#myModal">Detail</button>
-										</td>
-
-									</tr>
-									<?php
-										}
-									?>
-								</tbody>
-							</table>
-							<!-- Modal -->
-							<div id="myModal" class="modal fade" role="dialog">
-								<div class="modal-dialog">
-
-									<!-- Modal content-->
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
-											<h4 class="modal-title">Modal Header</h4>
-										</div>
-										<div class="modal-body">
-											<p>
-											<label class="control-label">NIK :</label>
-											
-											<label class="control-label">Nama :</label>
-											
-											<label class="control-label">Alamat :</label>
-											<!-- <input type="text" name="alamat" id="alamat" class="form-control" value="<?=$alamat?>"> -->
-											<label class="control-label">No Hp :</label>
-											<!-- <input type="text" name="no_hp" id="no_hp" class="form-control" value="<?=$no_hp?>"> -->
-											</p>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default"
-												data-dismiss="modal" data-id=".$row['id_pasien'].">Close</button>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
+							
+						</div> 
 					</div>
 					<!-- END TABLE HOVER -->
 				</div>
@@ -216,10 +170,10 @@ if (!isset($_SESSION['username'])) {
 	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
-	<script src="assets/vendor/jquery/jquery.min.js"></script>
-	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="assets/scripts/klorofil-common.js"></script>
+	<script src="../assets/vendor/jquery/jquery.min.js"></script>
+	<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../assets/scripts/klorofil-common.js"></script>
 </body>
 
 </html>

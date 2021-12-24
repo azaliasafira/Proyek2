@@ -1,3 +1,12 @@
+<?php 
+ 
+session_start();
+ 
+if (!isset($_SESSION['username'])) {
+    header("Location: index.php");
+}
+ 
+?>
 <!doctype html>
 <html lang="en">
 
@@ -39,9 +48,6 @@
 						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
 					</div>
 				</form>
-				<div class="navbar-btn navbar-btn-right">
-					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-				</div>
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
@@ -59,20 +65,8 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><?php echo $_SESSION['username'];?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Basic Use</a></li>
-								<li><a href="#">Working With Data</a></li>
-								<li><a href="#">Security</a></li>
-								<li><a href="#">Troubleshooting</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
@@ -116,7 +110,7 @@
 					<!-- TABLE HOVER -->
 						<div class="row">
 							<div class="col-md-6">
-								<a href="inserttabung.html">
+								<a href="inserttabung.php">
 									<button type="button" class="btn btn-info" style="border-radius: 100px;">Tambah Data</button>
 								</a>
 							</div>
@@ -131,38 +125,41 @@
 								<h3 class="panel-title">Tabel Data Tabung</h3>
 							</div>
 							<div class="panel-body">
-								<table class="table table-hover">
+								<table class="table table-bordered">
 									<thead>
 										<tr>
 											<th>No</th>
-											<th>Nama Paket</th>
-											<th>Harga</th>
-											<th>Deskripsi</th>
+											<th>Kode Tabung</th>
+											<th>Ukuran Tabung</th>
+											<th>Harga Tabung</th>
+											<th>Berat Tabung</th>
+											<th>Foto</th>
 											<th>Aksi</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Steve</td>
-											<td>Jobs</td>
-											<td>@steve</td>
-											<td>edit</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>Simon</td>
-											<td>Philips</td>
-											<td>@simon</td>
-											<td>edit</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Jane</td>
-											<td>Doe</td>
-											<td>@jane</td>
-											<td>edit</td>
-										</tr>
+									<?php
+										include "koneksi.php";
+										$query =mysqli_query($koneksi, "SELECT * FROM tb_tabung ORDER BY id_tabung ASC");
+										$no=0;
+										while($data =mysqli_fetch_array($query)){
+										$no++
+									?>
+									<tr>
+										<td><?php echo $no?></td>
+										<td><?php echo $data['kode_tabung']?></td>
+										<td><?php echo $data['ukuran']?></td>
+										<td><?php echo $data['harga']?></td>
+										<td><?php echo $data['berat']?></td>
+										<td><?php echo $data['foto']?></td>
+										<td><a href="edittabung.php?id_tabung=<?=$data['id_tabung']?>">Edit</a> | <a
+												href="hapustabung.php?id_tabung=<?=$data['id_tabung']?>"
+												onclick="return confirm('Are you sure you want to delete == <?php echo $data['kode_tabung']?> == from Database?');">Hapus</a>
+										</td>
+									</tr>
+									<?php
+											}
+										?>
 									</tbody>
 								</table>
 							</div>

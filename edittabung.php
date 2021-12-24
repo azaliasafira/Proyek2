@@ -1,3 +1,15 @@
+<?php
+ include "koneksi.php";
+ $id_tabung = $_GET['id_tabung'];
+ $query = "select * from tb_tabung where id_tabung='$id_tabung'";
+ $result = mysqli_query($koneksi, $query);
+ $row = mysqli_fetch_assoc($result);
+ $kode_tabung = $row['kode_tabung'];
+ $ukuran = $row['ukuran'];
+ $harga = $row['harga'];
+ $berat = $row['berat'];
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -89,15 +101,15 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="index.html"><i class="lnr lnr-home"></i> <span>Dashboard</span></a>
+						<li><a href="dashboard.php"><i class="lnr lnr-home"></i> <span>Dashboard</span></a>
 						</li>
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> 
 								<span>Master Data</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
-									<li><a href="datamakanan.html" class="">Data Makanan</a></li>
-									<li><a href="datatabung.html" class="active">Data Tabung</a></li>
+									<li><a href="datamakanan.php">Data Makanan</a></li>
+									<li><a href="datatabung.php" class="active">Data Tabung</a></li>
 									<li><a href="datapasien.html" class="">Data Pasien</a></li>
 								</ul>
 							</div>
@@ -112,39 +124,45 @@
 		<div class="main">
 			<div class="main-content">
 				<div class="container-fluid">
-					<h2>Master Data / Data Makanan / Tambah Data Tabung</h2>
+					<h2>Master Data / Data Tabung / Tambah Data Tabung</h2>
                     <div class="panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">Form Tambah Data Tabung</h3>
                         </div>
                         <div class="panel-body">
-                            <form action="insertmakanan_act.php" method="get">
+                            <form action="edit_tabung_act.php" method="GET" enctype="multipart/form-data">
+                                <div class="row" hidden>
+                                    <div class="col-md-6">
+                                        <label for="usr">id Tabung:</label>
+                                        <input type="text" value=<?php echo "$id_tabung"; ?> name="id_tabung" class="form-control" placeholder="Kode Tabung" style="border-radius: 100px;">
+                                    </div>
+                                </div>&nbsp;
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="usr">Kode Tabung:</label>
-                                        <input type="text" class="form-control" placeholder="Kode Makanan" style="border-radius: 100px;">
+                                        <input type="text" value=<?php echo "$kode_tabung"; ?> name="kode_tabung" class="form-control" placeholder="Kode Tabung" style="border-radius: 100px;">
                                     </div>
                                 </div>&nbsp;
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="pwd">Ukuran Tabung:</label>
-                                        <input type="text" class="form-control" placeholder="Nama Paket" style="border-radius: 100px;">
+                                        <input type="text" value=<?php echo "$ukuran"; ?> name="ukuran" class="form-control" placeholder="Ukuran Tabung" style="border-radius: 100px;">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="pwd">Harga Tabung:</label>
-                                        <input type="text" class="form-control" placeholder="Harga Paket" style="border-radius: 100px;">
+                                        <input type="text" value=<?php echo "$harga"; ?> name="harga" class="form-control" placeholder="Harga Tabung" style="border-radius: 100px;">
                                     </div>
                                 </div>&nbsp;
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="usr">Berat Tabung:</label><br>
-                                        <textarea class="form-control" name="textarea" id="" cols="70" rows="5" style="border-radius: 10px;"></textarea>
+                                        <textarea class="form-control"  name="berat" cols="70" rows="5" style="border-radius: 10px;"><?php echo "$berat"; ?></textarea>
                                     </div>
                                 </div>&nbsp;
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="usr">Foto:</label><br>
-                                        <textarea class="form-control" name="textarea" id="" cols="70" rows="5" style="border-radius: 10px;"></textarea>
+                                        <textarea class="form-control"  name="foto" cols="70" rows="5" style="border-radius: 10px;"></textarea>
                                     </div>
                                 </div>&nbsp;
                                 <div class="row">

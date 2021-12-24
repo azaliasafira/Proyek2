@@ -48,7 +48,6 @@ if (!isset($_SESSION['username'])) {
 						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
 					</div>
 				</form>
-				
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
@@ -75,7 +74,7 @@ if (!isset($_SESSION['username'])) {
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><span><?php echo $_SESSION['username'];?>l</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><span><?php echo $_SESSION['username'];?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
@@ -103,8 +102,8 @@ if (!isset($_SESSION['username'])) {
 								<span>Master Data</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
-									<li><a href="datamakanan.php" class="active">Data Makanan</a></li>
-									<li><a href="datatabung.php" class="">Data Tabung</a></li>
+									<li><a href="datamakanan.php" class="">Data Makanan</a></li>
+									<li><a href="datatabung.php" class="active">Data Tabung</a></li>
 									<li><a href="datapasien.html" class="">Data Pasien</a></li>
 								</ul>
 							</div>
@@ -119,39 +118,39 @@ if (!isset($_SESSION['username'])) {
 		<div class="main">
 			<div class="main-content">
 				<div class="container-fluid">
-					<h2>Master Data / Data Makanan / Tambah Data Makanan</h2>
+					<h2>Master Data / Data Tabung / Tambah Data Tabung</h2>
                     <div class="panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Form Tambah Data Makanan</h3>
+                            <h3 class="panel-title">Form Tambah Data Tabung</h3>
                         </div>
                         <div class="panel-body">
-                            <form action="insertmakanan_act.php" method="GET" enctype="multipart/form-data">
+                            <form action="inserttabung_act.php" method="get">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label for="usr">Kode Makanan:</label>
-                                        <input type="text" name="kode_makanan" class="form-control" placeholder="Kode Makanan" style="border-radius: 100px;">
+                                        <label for="usr">Kode Tabung:</label>
+                                        <input type="text" name="kode_tabung" class="form-control" placeholder="Kode Tabung" style="border-radius: 100px;">
                                     </div>
                                 </div>&nbsp;
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label for="pwd">Nama Paket:</label>
-                                        <input type="text" name="nama_paket" class="form-control" placeholder="Nama Paket" style="border-radius: 100px;">
+                                        <label for="pwd">Ukuran Tabung:</label>
+                                        <input type="text" name="ukuran" class="form-control" placeholder="Ukuran Tabung" style="border-radius: 100px;">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="pwd">Harga Paket:</label>
-                                        <input type="text" name="harga" class="form-control" placeholder="Harga Paket" style="border-radius: 100px;">
+                                        <label for="pwd">Harga Tabung:</label>
+                                        <input type="text" name="harga" class="form-control" placeholder="Harga Tabung" style="border-radius: 100px;">
                                     </div>
                                 </div>&nbsp;
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label for="usr">Deskripsi:</label><br>
-                                        <textarea class="form-control"  name="deskripsi" cols="70" rows="5" style="border-radius: 10px;"></textarea>
+                                        <label for="usr">Berat Tabung:</label><br>
+                                        <input type="text" name="berat" class="form-control" placeholder="Berat Tabung" style="border-radius: 100px;">
                                     </div>
                                 </div>&nbsp;
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="usr">Foto:</label><br>
-                                        <textarea class="form-control"  name="foto" cols="70" rows="5" style="border-radius: 10px;"></textarea>
+                                        <textarea class="form-control" name="foto"  cols="70" rows="5" style="border-radius: 10px;"></textarea>
                                     </div>
                                 </div>&nbsp;
                                 <div class="row">
